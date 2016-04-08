@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="Adaptive_AppBar.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Adaptive_AppBar"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--Phone AppBar-->
+    <Page.BottomAppBar>
+        <CommandBar x:Name="Phone_AppBar">
+            <CommandBar.Background>
+                <SolidColorBrush Color="{StaticResource SystemAccentColor}"/>
+            </CommandBar.Background>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Pin to start"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Label="Refresh" Icon="Sync"/>
+            <AppBarButton Label="Filter" Icon="Filter"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!--Visual State Adaption-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="PageLarge">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Phone_AppBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="PC_AppBar.Visibility" Value="Visible"/>
+                        <Setter Target="Device_Type.Text" Value="Displaying the PC/Tablet AppBar"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="PageStandard">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Phone_AppBar.Visibility" Value="Visible"/>
+                        <Setter Target="PC_AppBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="Device_Type.Text" Value="Displaying the Phone AppBar"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="PageSmall">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Phone_AppBar.Visibility" Value="Visible"/>
+                        <Setter Target="PC_AppBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="Title.Margin" Value="68,0,0,0"/>
+                        <Setter Target="Device_Type.Text" Value="Displaying the phone AppBar"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="Home_Header" VerticalAlignment="Top" Background="{ThemeResource AppBarBackgroundThemeBrush}">
+            <!--PC/Tablet AppBar-->
+            <CommandBar x:Name="PC_AppBar" VerticalAlignment="Stretch">
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton Label="Pin to start"/>
+                </CommandBar.SecondaryCommands>
+                <AppBarButton Label="Refresh" Icon="Sync"/>
+                <AppBarButton Label="Filter" Icon="Filter"/>
+            </CommandBar>
+            <Grid Height="48" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <!--Page header text-->
+                <TextBlock x:Name="Title" Text="HOME" Style="{ThemeResource AppTitleTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        <TextBlock x:Name="Device_Type" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</Page>
