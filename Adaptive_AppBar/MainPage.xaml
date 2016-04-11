@@ -32,6 +32,7 @@
                     <VisualState.Setters>
                         <Setter Target="Phone_AppBar.Visibility" Value="Collapsed"/>
                         <Setter Target="PC_AppBar.Visibility" Value="Visible"/>
+                        <Setter Target="AppBar_DisplayOption.Visibility" Value="Collapsed"/>
                         <Setter Target="Device_Type.Text" Value="Displaying the PC/Tablet AppBar"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -42,6 +43,7 @@
                     <VisualState.Setters>
                         <Setter Target="Phone_AppBar.Visibility" Value="Visible"/>
                         <Setter Target="PC_AppBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="AppBar_DisplayOption.Visibility" Value="Visible"/>
                         <Setter Target="Device_Type.Text" Value="Displaying the Phone AppBar"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -52,6 +54,7 @@
                     <VisualState.Setters>
                         <Setter Target="Phone_AppBar.Visibility" Value="Visible"/>
                         <Setter Target="PC_AppBar.Visibility" Value="Collapsed"/>
+                        <Setter Target="AppBar_DisplayOption.Visibility" Value="Visible"/>
                         <Setter Target="Title.Margin" Value="68,0,0,0"/>
                         <Setter Target="Device_Type.Text" Value="Displaying the phone AppBar"/>
                     </VisualState.Setters>
@@ -72,6 +75,10 @@
                 <TextBlock x:Name="Title" Text="HOME" Style="{ThemeResource AppTitleTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
+        <StackPanel Margin="5,48,0,0">
+            <ToggleSwitch x:Name="AppBar_StickOption" Toggled="Stick_Toggled" Header="Stick when open" OnContent="Enabled" OffContent="Disabled"/>
+            <ToggleSwitch x:Name="AppBar_DisplayOption" Toggled="Display_Toggled" Header="Display mode" OnContent="Compact" OffContent="Minimized"/>
+        </StackPanel>
         <TextBlock x:Name="Device_Type" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

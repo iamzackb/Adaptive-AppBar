@@ -26,5 +26,38 @@ namespace Adaptive_AppBar
         {
             this.InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            AppBar_DisplayOption.IsOn = true;
+            AppBar_StickOption.IsOn = false;
+        }
+
+        private void Stick_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (AppBar_StickOption.IsOn == true)
+            {
+                Phone_AppBar.IsSticky = true;
+                PC_AppBar.IsSticky = true;
+            }
+            else if (AppBar_StickOption.IsOn == false)
+            {
+                Phone_AppBar.IsSticky = false;
+                PC_AppBar.IsSticky = false;
+            }
+        }
+
+        private void Display_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (AppBar_DisplayOption.IsOn == true)
+            {
+                Phone_AppBar.ClosedDisplayMode = AppBarClosedDisplayMode.Compact;
+            }
+            else if (AppBar_DisplayOption.IsOn == false)
+            {
+                Phone_AppBar.ClosedDisplayMode = AppBarClosedDisplayMode.Minimal;
+            }
+        }
     }
 }
